@@ -1,0 +1,22 @@
+﻿@model IEnumerable<System.Net.Http.Formatting.MediaTypeFormatter>
+@{ ViewBag.Title = "Formatters";}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Media Type Formatters</div>
+    <table class="table table-striped">
+        <thead>
+            <tr><th>Name</th><th>MIME Types</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var formatter in Model) {
+                <tr>
+                    <td>@formatter.GetType().Name</td>
+                    <td>
+                        @((string)string.Join(", ",
+                            formatter.SupportedMediaTypes.Select(x => x.MediaType)))
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

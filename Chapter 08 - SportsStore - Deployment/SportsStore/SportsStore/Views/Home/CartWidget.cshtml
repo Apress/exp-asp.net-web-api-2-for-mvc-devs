@@ -1,0 +1,14 @@
+﻿
+<div class="navbar-right" style="margin: 0 10px">
+    <button class="btn btn-default btn-xs navbar-btn"
+            data-bind="click: setView.bind($data, 'checkout'),
+                enable: customerModel.cartCount() > 0">
+        Checkout
+    </button>
+</div>
+
+<div class="navbar-text navbar-right">
+    <b>Your cart:</b>
+    <span data-bind="text: customerModel.cartCount()"></span> item(s),
+    <span data-bind="text: '$' + customerModel.cartTotal().toFixed(2)"></span>
+</div>

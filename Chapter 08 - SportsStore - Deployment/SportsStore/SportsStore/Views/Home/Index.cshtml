@@ -1,0 +1,44 @@
+﻿@section Scripts {
+    <script src="~/Scripts/storeCustomerModel.js"></script>
+    <script src="~/Scripts/storeCustomerController.js"></script>
+}
+
+<div class="navbar navbar-inverse" role="navigation">
+    <a class="navbar-brand" href="#">SPORTS STORE</a>
+    @Html.Partial("CartWidget");
+</div>
+
+<div id="categories" class="col-xs-3">
+    <button class="btn btn-block btn-default btn-lg"
+            data-bind="click: setCategory.bind(null)">
+        Home
+    </button>
+    <div data-bind="foreach: customerModel.productCategories()">
+        <button class="btn btn-block btn-default btn-lg"
+                data-bind="click: setCategory.bind($data), text: $data,
+                    css: {'btn-primary': $data ==
+                        customerModel.selectedCategory()}"></button>
+    </div>
+</div>
+
+<div class="alert alert-danger col-xs-8"
+     data-bind="visible: model.gotError(), text: model.error()">
+</div>
+
+<div class="col-xs-8">
+    <div class="row panel" data-bind="visible: customerModel.currentView() == 'list'">
+        @Html.Partial("ProductList")
+    </div>
+    <div class="row panel"
+         data-bind="visible: customerModel.currentView() == 'cart'">
+        @Html.Partial("ProductCart")
+    </div>
+    <div class="row panel"
+         data-bind="visible: customerModel.currentView() == 'checkout'">
+        @Html.Partial("Checkout")
+    </div>
+    <div class="row panel"
+         data-bind="visible: customerModel.currentView() == 'thankyou'">
+        @Html.Partial("ThankYou")
+    </div>
+</div>

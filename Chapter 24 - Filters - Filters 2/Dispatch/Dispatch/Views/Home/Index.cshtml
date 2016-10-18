@@ -1,0 +1,41 @@
+﻿@{ Layout = null;}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.0.min.js"></script>
+    <script src="~/Scripts/knockout-3.1.0.js"></script>
+    <script src="~/Scripts/dispatch.js"></script>
+    <style>
+        body { padding-top: 10px; }
+    </style>
+</head>
+<body class="container">
+    <div class="alert alert-success" data-bind="css: { 'alert-danger': gotError }">
+        <span data-bind="text: response()"></span>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Products</div>
+        <table class="table table-striped">
+            <thead>
+                <tr><th>ID</th><th>Name</th><th>Price</th></tr>
+            </thead>
+            <tbody data-bind="foreach: products">
+                <tr>
+                    <td data-bind="text: ProductID"></td>
+                    <td data-bind="text: Name"></td>
+                    <td data-bind="text: Price"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button class="btn btn-primary" data-bind="click: getAll">Get All</button>
+    <button class="btn btn-primary" data-bind="click: getOne">Get One</button>
+    <button class="btn btn-primary" data-bind="click: postOne">Post</button>
+</body>
+</html>

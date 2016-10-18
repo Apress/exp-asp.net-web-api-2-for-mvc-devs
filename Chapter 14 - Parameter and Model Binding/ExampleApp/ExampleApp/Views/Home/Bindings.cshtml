@@ -1,0 +1,15 @@
+﻿@{ ViewBag.Title = "Bindings"; }
+
+@section Scripts {
+    <script src="~/Scripts/bindings.js"></script> }
+
+<div class="alert alert-success" data-bind="css: { 'alert-danger': gotError }">
+    <span data-bind="text: response()"></span>
+</div>
+
+<button class="btn btn-primary" data-bind="click: sendRequest.bind($data, 'sum')">
+    Send Sum Request
+</button>
+<button class="btn btn-primary" data-bind="click: sendRequest.bind($data, 'difference')">
+    Send Difference Request
+</button>

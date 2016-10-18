@@ -1,0 +1,49 @@
+﻿
+<h2>Your Order</h2>
+
+<div class="form-group">
+    <label>Enter your name</label>
+    <input class="form-control" data-bind="value: model.username" />
+</div>
+
+<div class="panel panel-primary">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Item</th>
+                <th>Price</th>
+                <th class="text-right">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: customerModel.cart()">
+            <tr>
+                <td data-bind="text: $data.count"></td>
+                <td data-bind="text: $data.product.Name"></td>
+                <td data-bind="text: '$' + $data.product.Price.toFixed(2)"></td>
+                <td class="text-right"
+                    data-bind="text: '$'
+                        + ($data.count * $data.product.Price).toFixed(2)"></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2"></td>
+                <td>Total:</td>
+                <th class="text-right"
+                    data-bind="text: '$' + customerModel.cartTotal().toFixed(2)"></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<div class="text-center">
+    <button class="btn btn-primary"
+            data-bind="click: setView.bind($data, 'list')">
+        Cancel
+    </button>
+    <button class="btn btn-danger"
+            data-bind="click: placeOrder.bind($data)">
+        Place Order
+    </button>
+</div>

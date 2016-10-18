@@ -1,0 +1,53 @@
+﻿@{ ViewBag.Title = "Party!";}
+
+<div class="text-center" data-bind="visible: model.view() == 'welcome'">
+    <h2>We're going to have an exciting party!</h2>
+    <h3>And you are invited.</h3>
+    <button class="btn btn-success" data-bind="click: showForm">RSVP Now</button>
+</div>
+
+
+<div data-bind="visible: model.view() == 'form'">
+    <div class="panel panel-success">
+        <div class="panel-heading"><h4>RSVP</h4></div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label>Your name:</label>
+                <input class="form-control" data-bind="value: model.rsvp.name" />
+            </div>
+            <div class="form-group">
+                <label>Your email:</label>
+                <input class="form-control" data-bind="value: model.rsvp.email" />
+            </div>
+            <div class="form-group">
+                <label>Will you attend?</label>
+                <select class="form-control" data-bind="value: model.rsvp.willattend">
+                    <option value="true">Yes, I'll be there</option>
+                    <option value="false">No, I can't come</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-success"
+                        data-bind="click: sendRsvp">
+                    Submit RSVP
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div data-bind="visible: model.view() == 'thanks'">
+    <h1>Thank you, <span data-bind="text: model.rsvp.name()"></span>!</h1>
+    <div class="lead">
+        <span data-bind="visible: model.rsvp.willattend() == 'true'">
+            It's great that you're coming. The drinks are already in the fridge!
+            <br />
+            Here is the list of cool people coming:
+            <span data-bind="text: model.attendees().join(',')"></span>
+        </span>
+        <span data-bind="visible: model.rsvp.willattend() == 'false'">
+            Sorry to hear that you can't make it, but thanks for letting us know.
+        </span>
+    </div>
+</div>

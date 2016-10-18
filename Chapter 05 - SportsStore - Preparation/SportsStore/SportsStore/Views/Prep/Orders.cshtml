@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SportsStore.Models.Order>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Orders
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th colspan="3"></th>
+            <th>Total Cost</th>
+        </tr>
+        @foreach (var o in Model) {
+            <tr>
+                <td>@o.Id</td>
+                <td>@o.Customer</td>
+                <td colspan="3"></td>
+                <td>@string.Format("{0:c}", o.TotalCost)</td>
+            </tr>
+            <tr>
+                <th colspan="2"></th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            foreach (var ol in o.Lines) {
+                <tr>
+                    <td colspan="2"></td>
+                    <td>@ol.Product.Name</td>
+                    <td>@ol.Count</td>
+                    <td>@string.Format("{0:c}", ol.Product.Price)</td>
+                    <td></td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+
+@using (Html.BeginForm("SaveOrder", "Prep")) {
+    <input type="hidden" name="Customer" value="John Poet" />
+    <input type="hidden" name="TotalCost" value="91" />
+    <input type="hidden" name="lines[0].productid" value="6" />
+    <input type="hidden" name="lines[0].count" value="1" />
+    <input type="hidden" name="lines[1].productid" value="8" />
+    <input type="hidden" name="lines[1].count" value="1" />
+
+    <button class="btn btn-primary" type="submit">Create</button>
+    <a href="/prep/deleteorder/2" class="btn btn-primary">Delete</a>
+}

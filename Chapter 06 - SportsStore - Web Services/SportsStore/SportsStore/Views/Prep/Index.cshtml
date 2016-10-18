@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SportsStore.Models.Product>
+
+<div class="panel panel-primary ">
+    <a href="/prep/signin" class="btn btn-sm btn-primary">Sign In</a>
+    <a href="/prep/signout" class="btn btn-sm btn-primary">Sign Out</a>
+    User: @(HttpContext.Current.User.Identity.Name)
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Products</div>
+    <table class="table table-striped">
+        <tr><th>ID</th><th>Name</th><th>Category</th><th>Price</th></tr>
+        @foreach (var p in Model) {
+            <tr>
+                <td>@p.Id</td>
+                <td>@p.Name</td>
+                <td>@p.Category</td>
+                <td>@p.Price</td>
+            </tr>
+        }
+    </table>
+</div>
+
+@using (Html.BeginForm("SaveProduct", "Prep")) {
+    <input type="hidden" name="Name" value="Zippy Running Shoes" />
+    <input type="hidden" name="Category" value="Running" />
+    <input type="hidden" name="Description" value="Set a new Record Time" />
+    <input type="hidden" name="Price" value="159.99" />
+
+    <button class="btn btn-primary" type="submit">Create</button>
+    <a href="/prep/deleteproduct/2" class="btn btn-primary">Delete</a>
+}

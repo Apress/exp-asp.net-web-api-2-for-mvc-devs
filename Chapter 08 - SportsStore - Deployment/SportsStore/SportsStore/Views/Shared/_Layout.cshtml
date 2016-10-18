@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-2.1.0.min.js"></script>
+    <script src="~/Scripts/knockout-3.1.0.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+
+    <script src="~/Scripts/storeAjax.js"></script>
+    <script src="~/Scripts/storeModel.js"></script>
+    <script src="~/Scripts/storeCommonController.js"></script>
+    <script src="~/Scripts/storeProductsController.js"></script>
+    <script src="~/Scripts/storeOrdersController.js"></script>
+
+    <title>SportsStore</title>
+    <style>
+        body { padding-top: 10px; }
+    </style>
+    @RenderSection("Scripts", false)
+</head>
+<body class="container">
+    @RenderBody()
+</body>
+</html>

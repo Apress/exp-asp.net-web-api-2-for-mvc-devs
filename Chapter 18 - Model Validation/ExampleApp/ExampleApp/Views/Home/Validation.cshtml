@@ -1,0 +1,22 @@
+﻿@{ ViewBag.Title = "Model Validation"; }
+
+@section Scripts {
+    <script src="~/Scripts/validation.js"></script>
+}
+
+<div class="alert alert-success" data-bind="css: { 'alert-danger': gotError }">
+    <span data-bind="text: response()"></span>
+</div>
+<div class="form-group">
+    <label>ProductID</label>
+    <input class="form-control" data-bind="value: viewModel().productID" />
+</div>
+<div class="form-group">
+    <label>Name</label>
+    <input class="form-control" data-bind="value: viewModel().name" />
+</div>
+<div class="form-group">
+    <label>Price</label>
+    <input class="form-control" data-bind="value: viewModel().price" />
+</div>
+<button class="btn btn-primary" data-bind="click: sendRequest">Send Request</button>

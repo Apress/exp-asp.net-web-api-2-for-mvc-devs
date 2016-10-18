@@ -1,0 +1,11 @@
+﻿@model PartyInvites.Models.GuestResponse
+@{ ViewBag.Title = "Thanks";}
+<h1>Thank you, @Model.Name!</h1>
+<div class="lead">
+    @if (Model.WillAttend == true) {
+        @:It's great that you're coming. The drinks are already in the fridge!
+        @Html.Action("Attendees", "Home")
+    } else {
+        @:Sorry to hear that you can't make it, but thanks for letting us know.
+    }
+</div>

@@ -1,0 +1,55 @@
+﻿@section Scripts {
+    <script src="~/Scripts/storeAdminModel.js"></script>
+    <script src="~/Scripts/storeAdminController.js"></script>
+}
+
+<div class="navbar navbar-inverse" role="navigation">
+    <a class="navbar-brand" href="#">SPORTS STORE</a>
+</div>
+
+<div class="alert alert-danger text-center"
+     data-bind="visible: model.gotError(), text: model.error()">
+</div>
+
+<div>
+    <div class="text-center" data-bind="visible: adminModel.currentView() == 'signin'">
+        <div class="form-group">
+            <label>Username</label>
+            <input data-bind="value: model.username" />
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" data-bind="value: model.password" />
+        </div>
+        <button class="btn btn-primary"
+                data-bind="click: authenticateUser">
+            Sign In
+        </button>
+    </div>
+
+    <div data-bind="visible: adminModel.currentView() == 'productList'">
+
+        <div id="categories" class="col-xs-3">
+            <button class="btn btn-block btn-default btn-lg"
+                    data-bind="click: setListMode.bind($data, 'products')">
+                Products
+            </button>
+            <button class="btn btn-block btn-default btn-lg"
+                    data-bind="click: setListMode.bind($data, 'orders')">
+                Orders
+            </button>
+        </div>
+
+        <div class="col-xs-8" data-bind="visible: adminModel.listMode() == 'products'">
+            @Html.Partial("AdminProductList")
+        </div>
+
+        <div class="col-xs-8" data-bind="visible: adminModel.listMode() == 'addProduct'">
+            @Html.Partial("AdminProductAdd")
+        </div>
+
+        <div class="col-xs-8" data-bind="visible: adminModel.listMode() == 'orders'">
+            @Html.Partial("AdminOrderList")
+        </div>
+    </div>
+</div>

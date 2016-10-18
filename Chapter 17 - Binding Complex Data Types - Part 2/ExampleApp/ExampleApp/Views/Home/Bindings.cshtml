@@ -1,0 +1,17 @@
+﻿@{ ViewBag.Title = "Bindings"; }
+
+@section Scripts {
+    <script src="~/Scripts/bindings.js"></script> }
+
+<div class="alert alert-success" data-bind="css: { 'alert-danger': gotError }">
+    <span data-bind="text: response()"></span>
+</div>
+<div class="form-group">
+    <label>First Number</label>
+    <input class="form-control" data-bind="value: viewModel().first" />
+</div>
+<div class="form-group">
+    <label>Second Number</label>
+    <input class="form-control" data-bind="value: viewModel().second" />
+</div>
+<button class="btn btn-primary" data-bind="click: sendRequest">Send Request</button>

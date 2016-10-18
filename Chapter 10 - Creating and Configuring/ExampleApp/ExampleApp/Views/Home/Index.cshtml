@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ExampleApp.Models.Product>
+@{ ViewBag.Title = "Index";}
+
+@section Scripts {
+    <script>
+        var products = ko.observableArray(
+            @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+    </script>
+    <script src="~/Scripts/exampleApp.js"></script>
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">RSVPs</div>
+    <table id="rsvpTable" class="table table-striped">
+        <thead>
+            <tr><th>ID</th><th>Name</th><th>Price</th></tr>
+        </thead>
+        <tbody data-bind="foreach: products">
+            <tr>
+                <td data-bind="text: ProductID"></td>
+                <td data-bind="text: Name"></td>
+                <td data-bind="text: Price"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<button data-bind="click: getProducts" class="btn btn-primary">Refresh</button>

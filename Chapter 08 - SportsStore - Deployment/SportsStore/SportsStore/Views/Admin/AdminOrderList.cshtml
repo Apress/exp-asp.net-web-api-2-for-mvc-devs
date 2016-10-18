@@ -1,0 +1,47 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Orders
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th colspan="3"></th>
+                <th>Total Cost</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: model.orders()">
+            <tr>
+                <td data-bind="text: $data.Id"></td>
+                <td data-bind="text: $data.Customer"></td>
+                <td colspan="3"></td>
+                <td data-bind="text: '$' + $data.TotalCost.toFixed(2)"></td>
+                <td>
+                    <button class="btn btn-xs btn-danger"
+                            data-bind="click: removeOrder">
+                        Remove
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2"></th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th colspan="2"></th>
+            </tr>
+            <!-- ko foreach: $data.Lines -->
+            <tr>
+                <td colspan="2"></td>
+                <td data-bind="text: $data.Product.Name"></td>
+                <td data-bind="text: $data.Count"></td>
+                <td data-bind="text: '$' + $data.Product.Price.toFixed(2)"></td>
+                <td colspan="2"></td>
+            </tr>
+            <!-- /ko -->
+        </tbody>
+    </table>
+</div>

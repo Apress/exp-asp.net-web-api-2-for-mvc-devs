@@ -1,0 +1,17 @@
+﻿
+<div data-bind="foreach: customerModel.filteredProducts()">
+    <div class="well">
+        <h3>
+            <strong data-bind="text: $data.Name"></strong>
+            <span class="pull-right label label-primary"
+                  data-bind="text: ('$' + $data.Price.toFixed(2))"></span>
+        </h3>
+        <span class="lead" data-bind="text: $data.Description"></span>
+        <div class="pull-right">
+            <button class="btn btn-success"
+                    data-bind="click: addToCart">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+</div>

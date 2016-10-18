@@ -1,0 +1,36 @@
+﻿@{ ViewBag.Title = "Formats"; }
+
+@section Scripts {
+<script>
+    $(document).ready(function () {
+        $.ajax("/api/formats", {
+            dataType: "xml",
+            success: function (data) {
+                var props = ["Time", "Text", "Count"];
+                var jsObject = {};
+                for (var i = 0; i < props.length; i++) {
+                    jsObject[props[i]] = $(data).find(props[i]).text();
+                }
+                dataObject = ko.observable(jsObject);
+                ko.applyBindings();
+            }
+        });
+    });
+</script>
+
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">RSVPs</div>
+    <table id="rsvpTable" class="table table-striped">
+        <thead><tr><th>Property</th><th>Value</th></tr></thead>
+        <tbody>
+            <tr><td>Time</td><td data-bind="text: dataObject().Time"></td></tr>
+            <tr><td>Text</td><td data-bind="text: dataObject().Text"></td></tr>
+            <tr>
+                <td>Count</td>
+                <td data-bind="text: dataObject().Count"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

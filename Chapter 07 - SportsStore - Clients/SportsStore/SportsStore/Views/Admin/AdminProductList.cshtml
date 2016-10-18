@@ -1,0 +1,30 @@
+﻿
+<div class="panel panel-primary">
+    <table class="table table-striped">
+        <thead>
+            <tr><th>ID</th><th>Name</th><th>Category</th><th>Price</th><th></th></tr>
+        </thead>
+        <tbody data-bind="foreach: model.products()">
+            <tr>
+                <td data-bind="text: $data.Id"></td>
+                <td data-bind="text: $data.Name"></td>
+                <td data-bind="text: $data.Category"></td>
+                <td data-bind="text: '$' + $data.Price.toFixed(2)"
+                    class="text-right"></td>
+                <td>
+                    <button class="btn btn-xs btn-danger"
+                            data-bind="click: removeProduct">
+                        Remove
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center">
+    <button class="btn btn-primary"
+            data-bind="click: setListMode.bind($data, 'addProduct')">
+        Add Product
+    </button>
+</div>
